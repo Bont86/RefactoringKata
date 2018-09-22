@@ -40,7 +40,7 @@ namespace WalletKata.Test
             // Assert
             // Expected exception
             // Maybe we do not want this behavior, but there is no spec about this,
-            // and currently, the code throw a UserNotLoggedInException, which do not match to this case.
+            // and currently, the code throw a NullReferenceException, if user is logged in, which is not enough specific.
         }
 
         [TestMethod]
