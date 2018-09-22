@@ -1,6 +1,10 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
 using WalletKata.Exceptions;
+using WalletKata.Interfaces.Wallets;
 using WalletKata.Users;
 using WalletKata.Wallets;
 
@@ -9,12 +13,16 @@ namespace WalletKata.Test
     [TestClass]
     public class WalletServiceTest
     {
+        private Mock<IWalletDAO> _walletDaoMock;
+
         private WalletService _service;
 
         [TestInitialize]
         public void Initialize()
         {
-            _service = new WalletService();
+            _walletDaoMock = new Mock<IWalletDAO>();
+
+            _service = new WalletService(_walletDaoMock.Object);
         }
 
         [TestMethod]
@@ -51,22 +59,34 @@ namespace WalletKata.Test
         public void GetWalletsByUser_ShouldReturnEmptyListWhenUserIsNotFriendWithParamUser()
         {
             // Arrange
+            var paramUser = new User();
+            _walletDaoMock
+                .Setup(dao => dao.FindWalletsByUser(It.IsAny<User>()))
+                .Returns(new List<Wallet> { new Wallet { } });
 
             // Act
+            var result = _service.GetWalletsByUser(paramUser);
 
             // Assert
-            Assert.Fail("This is not implemented yet");
+            Assert.IsNotNull(result);
+            Assert.IsFalse(result.Any());
         }
 
         [TestMethod]
         public void GetWalletsByUser_ShouldReturnCorrectListOfWallets()
         {
             // Arrange
+            var paramUser = new User();
+            var expectedWallets = new List<Wallet> { new Wallet { } };
+            _walletDaoMock
+                .Setup(dao => dao.FindWalletsByUser(It.IsAny<User>()))
+                .Returns(expectedWallets);
 
             // Act
+            var result = _service.GetWalletsByUser(paramUser);
 
             // Assert
-            Assert.Fail("This is not implemented yet");
+            Assert.AreEqual(expectedWallets, result);
         }
     }
 }

@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WalletKata", "WalletKata\Wa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WalletKata.Test", "WalletKata.Test\WalletKata.Test.csproj", "{4C9FB4E6-B287-43E7-8D88-3841B75F7F9A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WalletKata.Interfaces", "WalletKata.Interfaces\WalletKata.Interfaces.csproj", "{34766323-B3A6-4263-B4B5-C62DD632FAD2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{4C9FB4E6-B287-43E7-8D88-3841B75F7F9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C9FB4E6-B287-43E7-8D88-3841B75F7F9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C9FB4E6-B287-43E7-8D88-3841B75F7F9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{34766323-B3A6-4263-B4B5-C62DD632FAD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{34766323-B3A6-4263-B4B5-C62DD632FAD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{34766323-B3A6-4263-B4B5-C62DD632FAD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{34766323-B3A6-4263-B4B5-C62DD632FAD2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
