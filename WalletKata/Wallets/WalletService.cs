@@ -25,7 +25,7 @@ namespace WalletKata.Wallets
 
             if (loggedUser != null)
             {
-                foreach (User friend in user.GetFriends())
+                foreach (var friend in user.Friends)
                 {
                     if (friend.Equals(loggedUser))
                     {

@@ -88,7 +88,7 @@ namespace WalletKata.Test
                 .Setup(dao => dao.FindWalletsByUser(It.IsAny<User>()))
                 .Returns(expectedWallets);
             var loggedUser = new User();
-            paramUser.AddFriend(loggedUser);
+            paramUser.Friends.Add(loggedUser);
             _userSessionMock
                 .Setup(s => s.GetLoggedUser())
                 .Returns(loggedUser);
