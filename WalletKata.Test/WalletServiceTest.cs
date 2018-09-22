@@ -66,6 +66,9 @@ namespace WalletKata.Test
             _walletDaoMock
                 .Setup(dao => dao.FindWalletsByUser(It.IsAny<User>()))
                 .Returns(new List<Wallet> { new Wallet { } });
+            _userSessionMock
+                .Setup(s => s.GetLoggedUser())
+                .Returns(new User());
 
             // Act
             var result = _service.GetWalletsByUser(paramUser);
@@ -84,6 +87,12 @@ namespace WalletKata.Test
             _walletDaoMock
                 .Setup(dao => dao.FindWalletsByUser(It.IsAny<User>()))
                 .Returns(expectedWallets);
+            var loggedUser = new User();
+            paramUser.AddFriend(loggedUser);
+            _userSessionMock
+                .Setup(s => s.GetLoggedUser())
+                .Returns(loggedUser);
+
 
             // Act
             var result = _service.GetWalletsByUser(paramUser);
