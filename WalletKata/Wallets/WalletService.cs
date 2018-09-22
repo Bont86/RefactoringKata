@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using WalletKata.Exceptions;
 using WalletKata.Interfaces.Users;
@@ -17,34 +18,26 @@ namespace WalletKata.Wallets
             _userSession = userSession;
         }
 
+        /// <summary>
+        /// Returns wallets belonging to the given user.
+        /// </summary>
+        /// <param name="user">The user from which we want the wallets.</param>
+        /// <returns>A list of wallets belonging to the given user, or an empty list if given user and current user are not friends.</returns>
+        /// <exception cref="ArgumentNullException">User parameter is null.</exception>
+        /// <exception cref="UserNotLoggedInException">User calling this method is not logged in.</exception>
         public List<Wallet> GetWalletsByUser(User user)
         {
-            List<Wallet> walletList = new List<Wallet>();
-            User loggedUser = _userSession.GetLoggedUser();
-            bool isFriend = false;
+            if (user == null)
+                throw new ArgumentNullException(nameof(user));
 
-            if (loggedUser != null)
-            {
-                foreach (var friend in user.Friends)
-                {
-                    if (friend.Equals(loggedUser))
-                    {
-                        isFriend = true;
-                        break;
-                    }
-                }
-
-                if (isFriend)
-                {
-                    walletList = _walletDao.FindWalletsByUser(user);
-                }
-
-                return walletList;
-            }
-            else
-            {
+            var loggedUser = _userSession.GetLoggedUser();
+            if (loggedUser == null)
                 throw new UserNotLoggedInException();
-            }
+
+            if (!user.Friends.Contains(loggedUser))
+                return new List<Wallet>();
+
+            return _walletDao.FindWalletsByUser(user);
         }
     }
 }
