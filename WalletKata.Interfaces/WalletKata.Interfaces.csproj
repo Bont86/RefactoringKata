@@ -42,6 +42,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Users\IUserSession.cs" />
     <Compile Include="Users\User.cs" />
     <Compile Include="Wallets\IWalletDAO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

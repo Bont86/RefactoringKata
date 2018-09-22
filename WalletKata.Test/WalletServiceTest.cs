@@ -4,6 +4,7 @@ using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Moq;
 using WalletKata.Exceptions;
+using WalletKata.Interfaces.Users;
 using WalletKata.Interfaces.Wallets;
 using WalletKata.Users;
 using WalletKata.Wallets;
@@ -14,6 +15,7 @@ namespace WalletKata.Test
     public class WalletServiceTest
     {
         private Mock<IWalletDAO> _walletDaoMock;
+        private Mock<IUserSession> _userSessionMock;
 
         private WalletService _service;
 
@@ -21,8 +23,9 @@ namespace WalletKata.Test
         public void Initialize()
         {
             _walletDaoMock = new Mock<IWalletDAO>();
+            _userSessionMock = new Mock<IUserSession>();
 
-            _service = new WalletService(_walletDaoMock.Object);
+            _service = new WalletService(_walletDaoMock.Object, _userSessionMock.Object);
         }
 
         [TestMethod]
